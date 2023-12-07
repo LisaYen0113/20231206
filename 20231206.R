@@ -96,3 +96,8 @@ sub_website = read_html(sub_link)
 
 article_info = sub_website %>% html_nodes(".article-meta-value")
 article_info
+
+URL = "https://www.ptt.cc/bbs/AllTogether/index.html"
+website = read_html(URL)
+
+website %>% html_nodes("a") %>% .[8] %>% html_attr("href")
