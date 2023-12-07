@@ -13,3 +13,23 @@ end.TITLE.pos = start.TITLE.pos + attr(TITLE.pos[[1]], "match.length")[1] - 1
 TITLE.word = substr(txt_new, start.TITLE.pos, end.TITLE.pos)
 
 TITLE.word
+
+TITLE.word = gsub("<title>", "", TITLE.word)
+TITLE.word = gsub("</title>", "", TITLE.word)
+TITLE.word
+
+start.pos = gregexpr("<tr>", txt_new)
+end.pos = gregexpr("</tr>", txt_new)
+
+i = 1
+sub.start.pos = start.pos[[1]][i]
+sub.end.pos = end.pos[[1]][i] + attr(end.pos[[1]], "match.length")[i] - 1
+
+sub_txt = substr(txt_new, sub.start.pos, sub.end.pos)
+sub_txt
+
+sub_txt = gsub('等候掛號人數：', '', sub_txt)
+sub_txt = gsub('</?tr>', '', sub_txt)
+sub_txt = gsub('</?td>', '', sub_txt)
+sub_txt = gsub(' ', '', sub_txt)
+sub_txt
